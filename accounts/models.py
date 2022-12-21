@@ -68,7 +68,7 @@ class User(AbstractBaseUser):
     objects = UserManager()
 
     def __str__(self):
-        return self.email
+        return f'{self.email}'
 
     def has_perm(self, perm, obj=None):
         return self.is_admin
@@ -102,14 +102,5 @@ class UserProfile(models.Model):
     #     return f'{self.address_line_1}, {self.address_line_2}'
 
     def __str__(self):
-        return self.user.email
-
-
-    def save(self, *args, **kwargs):
-        if self.latitude and self.longitude:
-            self.location = Point(float(self.longitude), float(self.latitude))
-            return super(UserProfile, self).save(*args, **kwargs)
-        return super(UserProfile, self).save(*args, **kwargs)
-
-
+        return f'{self.user}'
 

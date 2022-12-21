@@ -9,8 +9,8 @@ class UserForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data=super(UserForm, self).clean()
-        password= changed_data.get('password')
-        confirm_password= changed_data.get('confirm_password')
+        password= cleaned_data.get('password')
+        confirm_password= cleaned_data.get('confirm_password')
 
         if password !=confirm_password:
             raise forms.ValidationError('passwrds donot match')
