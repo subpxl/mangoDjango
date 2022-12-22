@@ -85,3 +85,17 @@ table > tbody > tr > td{
 table td, table th{
     line-height: 1rem !important;
 }
+
+.btn.btn-info{
+    padding: 2px 1.75rem;
+    font-size: 12px;
+    cursor: pointer ;
+}
+
+
+.btn {
+    padding: 2px 1.7em;
+    font-size: 12px;
+    cursor: pointer;
+
+}

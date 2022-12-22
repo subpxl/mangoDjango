@@ -30,7 +30,8 @@ INSTALLED_APPS = [
 
     # local apps
     'accounts',
-    'vendor'
+    'vendor',
+    'menu'
 ]
 
 MIDDLEWARE = [

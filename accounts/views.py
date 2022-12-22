@@ -7,7 +7,6 @@ from vendor.forms import VendorForm
 from .utils import detectUser
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.core.exceptions import PermissionDenied
-from vendor.models import Vendor
 
 
 # restrict customer from entering vendor
