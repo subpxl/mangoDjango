@@ -5,10 +5,11 @@ from django.contrib import messages,auth
 # Create your views here.
 from vendor.forms import VendorForm
 from .utils import detectUser
-
-from django.conf.auth.decorators import login_required,user_passes_test
-
+from django.contrib.auth.decorators import login_required,user_passes_test
 from django.core.exceptions import PermissionDenied
+from vendor.models import Vendor
+
+
 # restrict customer from entering vendor
 def check_role_vendor(user):
     if user.role==1:
@@ -139,13 +140,13 @@ def myAccount(request):
 
 @login_required(login_url='login')
 @user_passes_test(check_role_vendor)
-def vendorDashboard(self):
-    return render(request, 'accounts/customerDashboard.html')
+def vendorDashboard(request):
+    return render(request, 'accounts/vendorDashboard.html')
 
 
 @login_required(login_url='login')
 @user_passes_test(check_role_customer)
 
-def customerDashboard(self):
-    return render(request, 'accounts/vendorDashboard.html')
+def customerDashboard(request):
+    return render(request, 'accounts/customerDashboard.html')
 
