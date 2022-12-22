@@ -49,8 +49,9 @@ def vprofile(request):
 @user_passes_test(check_role_vendor)
 def menu_builder(request):
     vendor = get_vendor(request)
-
-    categories = Category.objects.get(vendor=vendor)
+    print('vendor is ',vendor)
+    categories = Category.objects.filter(vendor=vendor)
+    # categories = Category.objects.all()
     context = {
         'categories':categories
     }

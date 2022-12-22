@@ -2,12 +2,12 @@ from django.shortcuts import render,redirect
 from .forms import UserForm
 from .models import User,UserProfile
 from django.contrib import messages,auth
+
 # Create your views here.
 from vendor.forms import VendorForm
 from .utils import detectUser
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.core.exceptions import PermissionDenied
-
 
 # restrict customer from entering vendor
 def check_role_vendor(user):
@@ -24,21 +24,19 @@ def check_role_customer(user):
 
 
 
-from django.contrib.auth.decorators import login_required
 def registerUser(request):
     if request.user.is_authenticated:
         messages.warning(request, 'you are already loggedin')
-        return redirect('dashboard')
+        return redirect('myAccount')
     elif request.method=="POST":
-        print(request.POST)
         form=UserForm(request.POST)
         if form.is_valid():
             # create use using form
-            password=form.cleaned_data['password']
-            user = form.save(commit=False)
-            user.set_password(password)
-            user.role=User.CUSTOMER
-            form.save()
+            # password=form.cleaned_data['password']
+            # user = form.save(commit=False)
+            # user.set_password(password)
+            # user.role=User.CUSTOMER
+            # form.save()
 
             # create user using create_user method
             first_name= form.cleaned_data['first_name']
@@ -51,7 +49,7 @@ def registerUser(request):
             user.save()
             print('user is created')
             messages.success(request, 'your account has been regusters successfully')
-            return redirect('registerUser')
+            return redirect('myAccount')
     else:
         form = UserForm()
     context = {
@@ -64,7 +62,7 @@ def registerUser(request):
 def registerVendor(request):
     if request.user.is_authenticated:
         messages.warning(request, 'you are already loggedin')
-        return redirect('dashboard')
+        return redirect('myAccount')
     elif request.method=="POST":
         form =UserForm(request.POST)
         v_form =VendorForm(request.POST,request.FILES)
@@ -84,7 +82,7 @@ def registerVendor(request):
             vendor.user_profile=user_profile
             vendor.save()
             messages.success(request, 'your account has been registered, please wait for approval')
-            return redirect('registerVendor')    
+            return redirect('login')    
         else:
             print('invalid form')
             print(form.errors)
@@ -102,7 +100,7 @@ def registerVendor(request):
 def login(request):
     if request.user.is_authenticated:
         messages.warning(request, 'you are already loggedin')
-        return redirect('dashboard')
+        return redirect('myAccount')
     
     elif request.method=="POST":
         email = request.POST['email']
@@ -111,7 +109,7 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'you are now loggedin')
-            return redirect('dashboard') 
+            return redirect('myAccount') 
 
         else:
             messages.error(request, 'invalid credenteials')

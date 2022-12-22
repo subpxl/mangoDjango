@@ -18,6 +18,13 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError('passwrds donot match')
 
 
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control border border-dark'
+
+
+
 class UserProfileForm(forms.ModelForm):
 
     

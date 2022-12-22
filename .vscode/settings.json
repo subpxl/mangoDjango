@@ -1,15 +1,18 @@
 {
-    "sqltools.connections": [
-        {
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 5432,
-            "driver": "PostgreSQL",
-            "name": "pgdoker",
-            "group": "pgdocker",
-            "database": "postgres",
-            "username": "postgres",
-            "password": "postgres"
-        }
-    ]
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "pgdoker",
+      "group": "pgdocker",
+      "database": "postgres",
+      "username": "postgres",
+      "password": "postgres"
+    }
+  ],
+  "files.exclude": {
+    ".vscode": true
+  }
 }

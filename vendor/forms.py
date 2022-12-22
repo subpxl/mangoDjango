@@ -6,3 +6,8 @@ class VendorForm(forms.ModelForm):
     class Meta:
         model = Vendor
         fields = ['vendor_name','vendor_license']
+
+    def __init__(self,*args,**kwargs):
+        super(VendorForm, self).__init__(*args,**kwargs)
+        for visibile in self.visible_fields():
+            visibile.field.widget.attrs['class'] = 'border border-dark'

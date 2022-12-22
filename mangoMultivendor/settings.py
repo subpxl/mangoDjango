@@ -1,21 +1,13 @@
-
 from pathlib import Path
 import os
 from decouple import config
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-^4as7fw+3u!bic@ygof7j^jhh787!y5ud%2hnfg9*w1fe=q63#'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','ganjalust.com','digitalbazaar.io',]
 
 
 # Application definition
@@ -66,9 +58,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mangoMultivendor.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
@@ -84,9 +73,6 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     # {
@@ -117,7 +103,6 @@ STATIC_ROOT=os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS =[
     'mangoMultivendor/static'
 ]
-
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
