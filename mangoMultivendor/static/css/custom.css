@@ -1,18 +1,3 @@
-@keyframes show-toast{
-    0% {bottom: -100%}
-    20% {bottom: 100px}
-    80% {bottom: 100px}
-    100% {bottom: -100%}
-}
-
-.show-notification{
-    position: fixed;
-    bottom: 100%;
-    right: 20px !important;
-    animation-name: show-toast;
-    animation-duration: 8s;
-    z-index: 99;
-}
 
 .btn{
     padding: 2px 1.75em;
@@ -86,16 +71,26 @@ table td, table th{
     line-height: 1rem !important;
 }
 
-.btn.btn-info{
+.btn {
     padding: 2px 1.75rem;
     font-size: 12px;
     cursor: pointer ;
 }
 
 
-.btn {
-    padding: 2px 1.7em;
-    font-size: 12px;
-    cursor: pointer;
 
+@keyframes show-toast{
+    0% {bottom: -100%}
+    20% {bottom: 100px}
+    80% {bottom: 100px}
+    100% {bottom: -100%}
+}
+
+.show-notification{
+    position: fixed;
+    bottom: 100%;
+    right: 20px !important;
+    animation-name: show-toast;
+    animation-duration: 8s;
+    z-index: 99;
 }

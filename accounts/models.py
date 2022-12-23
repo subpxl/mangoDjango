@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.db.models.fields.related import ForeignKey, OneToOneField
+from django.db.models.fields.related import OneToOneField
 
-# Create your models here.
 class UserManager(BaseUserManager):
     def create_user(self, first_name, last_name, username, email, password=None):
         if not email:
@@ -12,10 +11,10 @@ class UserManager(BaseUserManager):
             raise ValueError('User must have an username')
 
         user = self.model(
-            email = self.normalize_email(email),
-            username = username,
-            first_name = first_name,
-            last_name = last_name,
+            email=self.normalize_email(email),
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
         )
         user.set_password(password)
         user.save(using=self._db)
@@ -23,11 +22,11 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, first_name, last_name, username, email, password=None):
         user = self.create_user(
-            email = self.normalize_email(email),
-            username = username,
-            password = password,
-            first_name = first_name,
-            last_name = last_name,
+            email=self.normalize_email(email),
+            username=username,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
         )
         user.is_admin = True
         user.is_active = True
@@ -50,7 +49,8 @@ class User(AbstractBaseUser):
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=100, unique=True)
     phone_number = models.CharField(max_length=12, blank=True)
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICE, blank=True, null=True)
+    role = models.PositiveSmallIntegerField(
+        choices=ROLE_CHOICE, blank=True, null=True)
 
     # required fields
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -86,8 +86,10 @@ class User(AbstractBaseUser):
 
 class UserProfile(models.Model):
     user = OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
-    profile_picture = models.ImageField(upload_to='users/cover_photos', blank=True, null=True, default='/images/default-cover.PNG')
-    cover_photo = models.ImageField(upload_to='users/profile_pictures', blank=True, null=True, default='/images/default-profile.PNG' )
+    profile_picture = models.ImageField(
+        upload_to='users/cover_photos', blank=True, null=True, default='/images/default-cover.PNG')
+    cover_photo = models.ImageField(
+        upload_to='users/profile_pictures', blank=True, null=True, default='/images/default-profile.PNG')
     address = models.CharField(max_length=250, blank=True, null=True)
     country = models.CharField(max_length=15, blank=True, null=True)
     state = models.CharField(max_length=15, blank=True, null=True)
@@ -99,8 +101,7 @@ class UserProfile(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
 
     def full_address(self):
-        return f'{self.address_line_1}, {self.address_line_2}'
+        return f'{self.address}'
 
     def __str__(self):
         return f'{self.user}'
-
