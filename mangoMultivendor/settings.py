@@ -1,3 +1,4 @@
+from django.contrib.messages import constants as messages
 from pathlib import Path
 import os
 from decouple import config
@@ -7,7 +8,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^4as7fw+3u!bic@ygof7j^jhh787!y5ud%2hnfg9*w1fe=q63#'
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','ganjalust.com','digitalbazaar.io',]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1',
+                 'ganjalust.com', 'digitalbazaar.io',]
 
 
 # Application definition
@@ -23,7 +25,8 @@ INSTALLED_APPS = [
     # local apps
     'accounts',
     'vendor',
-    'menu'
+    'menu',
+    'marketplace',
 ]
 
 MIDDLEWARE = [
@@ -41,7 +44,7 @@ ROOT_URLCONF = 'mangoMultivendor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,7 +66,7 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
-        'default': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mango',
         'USER': 'postgres',
@@ -99,29 +102,28 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT=os.path.join(BASE_DIR,'static')
-STATICFILES_DIRS =[
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
     'mangoMultivendor/static'
 ]
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'accounts.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
 
 EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT',cast=int)
-EMAIL_HOST_USER =config('EMAIL_HOST_USER')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS=config('EMAIL_USE_TLS')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 
-DEFAUTL_FROM_EMAIL='email@teset.com'
+DEFAUTL_FROM_EMAIL = 'email@teset.com'
