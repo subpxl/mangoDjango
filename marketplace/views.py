@@ -15,6 +15,7 @@ def marketplace(request):
 
 def seller_details(request, slug):
     vendor = Vendor.objects.get(vendor_slug=slug)
+    categories = Category.objects.filter(vendor=vendor)
     products = Product.objects.filter(vendor=vendor)
     product_count = products.count()
     deals = Product.objects.filter(vendor=vendor)
@@ -22,6 +23,7 @@ def seller_details(request, slug):
     context = {
         "vendor": vendor,
         "products": products,
+        "categories": categories,
         "deals": deals,
         "product_count": product_count
     }
@@ -29,8 +31,9 @@ def seller_details(request, slug):
 
 
 def category_list(request):
+    categories = Category.objects.all()
     context = {
-        "": "context"
+        "categories": categories
     }
     return render(request, 'category_list.html', context)
 

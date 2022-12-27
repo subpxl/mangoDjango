@@ -174,9 +174,9 @@
                         {% for category in categories  %}
                         <div class="card-2 bg-10 wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
                             <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="{% static 'imgs/shop/cat-12.png' %}" alt="" /></a>
+                                <a href="{% url 'product_by_category' category.slug %}"><img src="{{category.image.url}}" alt="" /></a>
                             </figure>
-                            <h6><a href="shop-grid-right.html">Oganic Kiwi</a></h6>
+                            <h6><a href="{% url 'product_by_category' category.slug %} ">{{category.category_name}}</a></h6>
                             <span>28 items</span>
                         </div>
                         {% endfor %}
