@@ -44,7 +44,7 @@ ROOT_URLCONF = 'mangoMultivendor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/ganjalust')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,7 +68,7 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mango',
+        'NAME': 'ganjalust',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',

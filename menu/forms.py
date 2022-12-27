@@ -1,7 +1,7 @@
 from django import forms
 
 from accounts.validators import allow_only_images_validator
-from .models import Category, FoodItem
+from .models import Category, Product
 
 
 class CategoryForm(forms.ModelForm):
@@ -10,11 +10,11 @@ class CategoryForm(forms.ModelForm):
         fields = ['category_name', 'description']
 
 
-class FoodItemForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     image = forms.FileField(widget=forms.FileInput(
         attrs={'class': 'btn btn-info w-100'}), validators=[allow_only_images_validator])
 
     class Meta:
-        model = FoodItem
-        fields = ['category', 'food_title',
+        model = Product
+        fields = ['category', 'product_title',
                   'description', 'price', 'is_available', 'image']
