@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^4as7fw+3u!bic@ygof7j^jhh787!y5ud%2hnfg9*w1fe=q63#'
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1',
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '206.189.141.39',
                  'ganjalust.com', 'digitalbazaar.io',]
 
 
