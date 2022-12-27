@@ -8,7 +8,7 @@ from vendor.forms import VendorForm
 from .utils import detectUser
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied
-
+from django.template.defaultfilters import slugify
 # restrict customer from entering vendor
 
 
@@ -83,6 +83,8 @@ def registerVendor(request):
             user.save()
             vendor = v_form.save(commit=False)
             vendor.user = user
+            vendor_name = v_form.cleaned_data['vendor_name']
+            vendor.vendor_name = slugify(vendor_name)+"-"+str(user.id)
             user_profile = UserProfile.objects.get(user=user.pk)
             vendor.user_profile = user_profile
             vendor.save()
