@@ -1,7 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from vendor.models import Vendor
 from menu.models import Product, Category
 from django.db.models import Q
+from .forms import ContactForm
+
+
+def contact(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('contact')
+    else:
+        form = ContactForm()
+        context = {
+            "form": form
+        }
+    return render(request, 'contact.html', context)
 
 
 def cart(request):
@@ -32,13 +47,16 @@ def sellers(request):
 
 def search(request):
     if request.method == "POST":
-        # categoryId = request.POST.get('category')
-        # search_query = request.POST.get('query')
-        # products = Product.objects.filter(
-        #     Q(product_title__icontains=search_query) | Q(category=categoryId))
+        products = Product.objects.all()
+        vendors = Vendor.objects.all()
+        product_count = products.count()
+        vendor_count = vendors.count()
         context = {
-            "products": 'products',
-            # "vendor_count": vendor_count,
+            "products": products,
+            "vendors": vendors,
+            "product_count": product_count,
+            "vendor_count": vendor_count,
+
         }
         return render(request, "result.html", context)
 
@@ -72,7 +90,10 @@ def seller_details(request, slug):
 
 def category_list(request):
     categories = Category.objects.all()
+    category_count = categories.count()
+
     context = {
+        "category_count": category_count,
         "categories": categories
     }
     return render(request, 'category_list.html', context)

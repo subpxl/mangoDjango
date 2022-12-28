@@ -18,6 +18,8 @@ class Vendor(models.Model):
     vendor_slug = models.SlugField(max_length=50, null=True, blank=True)
     description = models.CharField(max_length=255, null=True)
     vendor_license = models.ImageField(upload_to='vendor/license')
+    rating = models.DecimalField(max_digits=10, decimal_places=2)
+    num_of_reviews = models.PositiveIntegerField()
     is_approved = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now=True)
     modified_at = models.DateTimeField(auto_now=True)
