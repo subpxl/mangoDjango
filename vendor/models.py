@@ -13,6 +13,9 @@ class Vendor(models.Model):
     vendor_name = models.CharField(max_length=50)
     cover_photo = models.ImageField(
         upload_to='vendor/cover_photo', blank=True, null=True, default='/images/default-profile.PNG')
+    banner = models.ImageField(
+        upload_to='vendor/banner', blank=True, null=True, default='/images/default-profile.PNG')
+
     phone_number = models.CharField(max_length=50)
     address = models.CharField(max_length=50)
     vendor_slug = models.SlugField(max_length=50, null=True, blank=True)
